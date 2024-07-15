@@ -1,3 +1,5 @@
+import csv
+
 books_in_library = [
     {
         'title': 'Book_one',
@@ -156,9 +158,24 @@ def book_return():
             print(f'Books remains: {book["title"]} | {book["quantity"]}')
 
 
-def backup_book():
-    pass
+def backup_books():
+    
+    with open('books.csv', 'w', newline='') as file:
 
+        fieldnames = ["title", "authors", "isbn", "publishing_year", "price", "quantity"]
+        writer = csv.DictWriter(file, fieldnames=fieldnames)
+    
+        writer.writeheader()
+        writer.writerows(books_in_library)
+
+    with open('books_lend.csv', 'w', newline='') as file:
+        fieldnames = ["title", "name", "quantity"]
+        writer = csv.DictWriter(file, fieldnames=fieldnames)
+    
+        writer.writeheader()
+        writer.writerows(books_lend)
+
+    print('Books are backuped!')
 
 print('Welcome!')
 
@@ -172,6 +189,7 @@ Your options:
 6. Lend books
 7. View lended books
 8. Book return
+9. Backup books
 0. Exit
 """
 
@@ -202,6 +220,9 @@ while True:
 
     elif choice == '8':
         book_return()
+
+    elif choice == '9':
+        backup_books()
 
     elif choice == '0':
         break
