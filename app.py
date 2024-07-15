@@ -86,8 +86,9 @@ def search_by_authors():
             print(f"Found: {book['title']} - {book['authors']}")
 
 
-def remove_contact():
+def remove_book():
     search_term = input('Enter text to search to remove: ')
+
     for index, book in enumerate(books_in_library):
         if search_term.lower() in book['title'].lower():
             print(f"{index+1}. {book['title']} - {book['authors']}")
@@ -154,6 +155,11 @@ def book_return():
             book['quantity'] += quantity
             print(f'Books remains: {book["title"]} | {book["quantity"]}')
 
+
+def backup_book():
+    pass
+
+
 print('Welcome!')
 
 menu_text = """
@@ -162,7 +168,7 @@ Your options:
 2. View all books
 3. Search by title or ISBN
 4. Search by authors
-5. Remove contact
+5. Remove book
 6. Lend books
 7. View lended books
 8. Book return
@@ -186,7 +192,7 @@ while True:
         search_by_authors()
 
     elif choice == '5':
-        remove_contact()
+        remove_book()
 
     elif choice == '6':
         lend_books()
