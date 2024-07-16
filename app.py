@@ -109,16 +109,16 @@ def lend_books():
                 book['quantity'] -= quantity
                 print(f'Books remains: {book["quantity"]}')
 
-    lended_book = {
-        'title': book_title,
-        'name': borrower_name,
-        'quantity': quantity
-    }
+                lended_book = {
+                    'title': book_title,
+                    'name': borrower_name,
+                    'quantity': quantity
+                }
 
-    lended_books.append(lended_book)
+                lended_books.append(lended_book)
 
-    backup_lent_books()
-    print(f'{lended_book["title"]} {lended_book["quantity"]} copies lended successfully!')
+                backup_lent_books()
+                print(f'{lended_book["title"]} {lended_book["quantity"]} copies lended successfully!')
 
 
 def view_lent_book():
