@@ -1,32 +1,5 @@
-import csv
-
 books_in_library = [
-    {
-        'title': 'Book_one',
-        'authors': ['Author_one'],
-        'isbn': '12345-543',
-        'publishing_year': 2000,
-        'price': 200.00,
-        'quantity': 20
-    },
-
-    {
-        'title': 'Book_two',
-        'authors': ['Author_two'],
-        'isbn': '56789-768',
-        'publishing_year': 2010,
-        'price': 208.00,
-        'quantity': 25
-    },
-
-    {
-        'title': 'Book_three',
-        'authors': ['Author_three'],
-        'isbn': '127658-897',
-        'publishing_year': 2014,
-        'price': 215.00,
-        'quantity': 15
-    }
+    
 ]
 
 books_lend = [
@@ -55,7 +28,9 @@ def add_book():
         'quantity': quantity
     }
 
-    books_in_library.append(book)
+    with open('books.csv', 'a') as file_pointer:
+        book_line = f"{book['title']},{book['authors']},{book['isbn']},{book['publishing_year']},{book['price']},{book['quantity']}\n"
+        file_pointer.write(book_line)
 
     print('Book added successfully!')
 
@@ -123,7 +98,11 @@ def lend_books():
         'quantity': quantity
     }
 
-    books_lend.append(lended_book)
+    with open('books_lend.csv', 'a') as file_pointer:
+        book_line = f"{lended_book['title']},{lended_book['name']},{lended_book['quantity']}\n"
+        file_pointer.write(book_line)
+
+    # books_lend.append(lended_book)
 
     print(books_lend)
 
@@ -160,22 +139,40 @@ def book_return():
 
 def backup_books():
     
-    with open('books.csv', 'w', newline='') as file:
+    with open('books.csv', 'w') as file_pointer:
+        for books in books_in_library:
+            book_line = f"{books['title']},{books['authors']},{books['isbn']},{books['publishing_year']},{books['price']},{books['quantity']}\n"
+            file_pointer.write(book_line)
 
-        fieldnames = ["title", "authors", "isbn", "publishing_year", "price", "quantity"]
-        writer = csv.DictWriter(file, fieldnames=fieldnames)
-    
-        writer.writeheader()
-        writer.writerows(books_in_library)
-
-    with open('books_lend.csv', 'w', newline='') as file:
-        fieldnames = ["title", "name", "quantity"]
-        writer = csv.DictWriter(file, fieldnames=fieldnames)
-    
-        writer.writeheader()
-        writer.writerows(books_lend)
+    with open('books_lend.csv', 'w') as file_pointer:
+        for book in books_lend:
+            book_lines = f"{book['title']},{book['name']},{books['quantity']}\n"
+            file_pointer.write(book_lines)
 
     print('Books are backuped!')
+
+
+def restore_books():
+
+    books_in_library.clear()
+
+
+    with open('books.csv', 'r') as file_pointer:
+        for line in file_pointer.readlines():
+            line_splitted = line.split()
+            
+            books = {
+                'title': line_splitted[0],
+                'authors': line_splitted[1],
+                'isbn': line_splitted[2],
+                'publishing_year': line_splitted[3],
+                'price': line_splitted[4],
+                'quantity': line_splitted[5]
+            }
+
+            books_in_library.append(books)
+
+    print('Contact restored successfully!')
 
 print('Welcome!')
 
@@ -190,6 +187,7 @@ Your options:
 7. View lended books
 8. Book return
 9. Backup books
+10. Restore books
 0. Exit
 """
 
@@ -223,6 +221,9 @@ while True:
 
     elif choice == '9':
         backup_books()
+
+    elif choice == '10':
+        restore_books()
 
     elif choice == '0':
         break
