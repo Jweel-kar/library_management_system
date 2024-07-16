@@ -1,0 +1,65 @@
+[
+    {
+        "title": "Book_one",
+        "authors": [
+            "Author_one"
+        ],
+        "isbn": "12345-543",
+        "publishing_year": 2000,
+        "price": 200.0,
+        "quantity": 21
+    },
+    {
+        "title": "Book_two",
+        "authors": [
+            "Author_two"
+        ],
+        "isbn": "56789-768",
+        "publishing_year": 2010,
+        "price": 208.0,
+        "quantity": 25
+    },
+    {
+        "title": "Book_three",
+        "authors": [
+            "Author_three"
+        ],
+        "isbn": "127658-897",
+        "publishing_year": 2014,
+        "price": 215.0,
+        "quantity": 15
+    },
+    {
+        "title": "Learn Python",
+        "authors": [
+            "Tamim",
+            "Shahriar",
+            "Subeen"
+        ],
+        "isbn": "54645-7587",
+        "publishing_year": 2017,
+        "price": 200.0,
+        "quantity": 20
+    },
+    {
+        "title": "Book_four",
+        "authors": [
+            "Author",
+            "four"
+        ],
+        "isbn": "78575-8575",
+        "publishing_year": 2000,
+        "price": 200.0,
+        "quantity": 20
+    },
+    {
+        "title": "Book_five",
+        "authors": [
+            "Authour_five"
+        ],
+        "isbn": "7648-7464",
+        "publishing_year": 2010,
+        "price": 120.0,
+        "quantity": 12
+    }
+]
